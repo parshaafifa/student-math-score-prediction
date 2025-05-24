@@ -1,30 +1,60 @@
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import statsmodels.tools.tools as stattools
-from sklearn import tree 
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_validate, cross_val_score
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import r2_score,cohen_kappa_score,classification_report,mean_squared_error ,confusion_matrix
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.metrics import roc_auc_score,roc_curve
-from  sklearn import linear_model
-Df=pd.read_csv("C:/Users/User/Downloads/Kaggle dataset/StudentsPerformance.csv")
-D=pd.get_dummies(Df,drop_first=True)
-print(D.dtypes)
-Y=D['math score']
-X=D.drop(['math score'],axis=1)
-model=linear_model.LinearRegression()
-X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2)
-Model=model.fit(X_train,Y_train)
-Y_pred=model.predict(X_test)
-r2_score(Y_test,Y_pred)
-plt.scatter(Y_test, Y_pred)
-plt.xlabel("Actual Math Score")
-plt.ylabel("Predicted Math Score")
-plt.title("Actual vs Predicted Math Scores")
-plt.show()
+# 🎓 Student Math Score Prediction
 
+This project applies **Linear Regression** to predict students' math scores based on various demographic and educational features using the [Students Performance Dataset](https://www.kaggle.com/datasets/spscientist/students-performance-in-exams).
 
+---
+
+## 📁 Dataset Features
+The dataset includes:
+- Gender
+- Race/ethnicity
+- Parental level of education
+- Lunch type
+- Test preparation course
+- Reading score
+- Writing score
+
+---
+
+## ⚙️ Machine Learning Model
+- **Type**: Regression
+- **Model**: `LinearRegression` from `sklearn.linear_model`
+- **Target Variable**: `math score`
+- **Preprocessing**:
+  - Categorical features encoded using `pd.get_dummies(drop_first=True)`
+  - Data split using `train_test_split`
+
+---
+
+## 🧪 How to Run This Project
+1. Clone the repository.
+2. Place the dataset in the root directory.
+3. Run `math_score_prediction.py` in Spyder or Jupyter Notebook.
+4. Make sure these Python libraries are installed:
+   - `pandas`
+   - `numpy`
+   - `scikit-learn`
+   - `matplotlib`
+   - `seaborn`
+
+---
+
+## 📊 Evaluation Metrics
+- **R² Score**: `0.85` ✅
+- **MSE**, **MAE** (optional to include in next steps)
+- Actual vs Predicted plot:
+  
+  ![Actual vs Predicted](b97588c1-fca2-44b8-8187-4f91bf6a9296.png)
+
+---
+
+## 🔍 Future Work
+- Try advanced models: `Random Forest`, `XGBoost`, `SVR`
+- Use cross-validation for more stable evaluation
+- Visualize feature importances
+- Add pipeline & hyperparameter tuning
+
+---
+
+## ✍️ Author
+**Kotha** — Aspiring Machine Learning Engineer 💻  
